@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: stream.mattes.io
+
+app:
+  youtube:
+    enabled: false
+    client_id:
+    client_secret:
+    refresh_token:

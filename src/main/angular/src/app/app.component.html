@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">
+    <img src="/assets/depu7y-32.png" width="32" height="32" class="d-inline-block align-top" alt="">
+    Depu7y Sw1ft St4bbEr
+  </a>
+
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a class="nav-link" href="https://steamcommunity.com/id/krazy" target="_blank" rel="noopener" aria-label="Steam">
+        <fa-icon [icon]="faSteam"></fa-icon>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="https://twitter.com/mattesCSGO" target="_blank" rel="noopener" aria-label="Twitter">
+        <fa-icon [icon]="faTwitter"></fa-icon>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="https://www.youtube.com/channel/UCU5cBbPkc-7_6HIHIbCaCYA" target="_blank" rel="noopener" aria-label="YouTube">
+        <fa-icon [icon]="faYoutube"></fa-icon>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h1 class="my-4">Live Stream</h1>
+
+  <live-stream></live-stream>
+</div>
+
+<div class="container">
+  <h1 class="my-4">Completed Streams</h1>
+  
+  <completed-streams pageSize="6"></completed-streams>
+</div>

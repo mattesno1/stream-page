@@ -1,0 +1,24 @@
+{
+  "properties": [
+    {
+      "name": "app.youtube.enabled",
+      "type": "java.lang.Boolean",
+      "description": "if enabled, the YouTube API is used to fetch the list of streams. If disabled, a dummy implementation is used."
+    },
+    {
+      "name": "app.youtube.refresh_token",
+      "type": "java.lang.String",
+      "description": "OAuth 2.0 refresh token from the Google API. Retrieve one via /setup."
+    },
+    {
+      "name": "app.youtube.client_id",
+      "type": "java.lang.String",
+      "description": "OAuth 2.0 client ID from the Google API."
+    },
+    {
+      "name": "app.youtube.client_secret",
+      "type": "java.lang.String",
+      "description": "OAuth 2.0 client secret from the Google API."
+    }
+  ]
+}
