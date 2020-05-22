@@ -1,0 +1,5 @@
+src/main/angular/node_modules
+src/main/resources/public
+.gradle
+.idea
+build

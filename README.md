@@ -20,3 +20,25 @@ Then set the `app.youtube.refresh_token` property in the application.yaml accord
 
 From then on, you can run the app via `./gradlew bootRun -Pargs=--app.youtube.enabled=true,--app.youtube.refresh_token=<token>` 
 which will disable the setup endpoint and enable the YouTube API to retrieve active and completed streams.
+
+## docker
+build and run the docker image as usual:
+- to build execute `docker build -t streams .`
+- run it with `docker run -d -P --name=streams streams`
+
+#### configure credentials
+create a file named `application-secrets.yaml` with the following properties and the :
+```
+# secret properties
+app:
+  youtube:
+    enabled: true
+    client_id: GOOGLE_OAUTH_CLIENT_ID
+    client_secret: GOOGLE_OAUTH_CLIENT_SECRET
+    refresh_token: GOOGLE_OAUTH_REFRESH_TOKEN
+```
+to get the correct values, follow the steps from above.
+
+run the docker container mounting the `application-secrets.yaml` into the `/secrets` folder inside the container:
+
+`docker run -d -P -v /absolute/path/to/application-secrets.yaml:/secrets/application-secrets.yaml --name=streams streams`

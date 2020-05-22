@@ -48,7 +48,3 @@ tasks.register<Exec>("ngBuild") {
 	workingDir("src/main/angular")
 	commandLine("ng", "build")
 }
-
-tasks.named("bootJar") {
-	dependsOn(":ngBuild")
-}

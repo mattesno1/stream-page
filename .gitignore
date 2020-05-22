@@ -6,3 +6,4 @@ out
 build/
 node_modules
 src/main/resources/public/*
+application-secrets.yaml

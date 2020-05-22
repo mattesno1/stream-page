@@ -45,7 +45,7 @@ class YouTubeConfiguration {
         private val HTTP_TRANSPORT = NetHttpTransport()
     }
 
-    @Value("\${app.youtube.refresh_token:#{null}")
+    @Value("\${app.youtube.refresh_token:#{null}}")
     private var refreshToken: String? = null
     @Value("\${app.youtube.client_id}")
     private var clientId: String? = null
