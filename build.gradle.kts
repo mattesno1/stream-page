@@ -20,11 +20,13 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-cache")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("com.google.apis:google-api-services-youtube:v3-rev20200423-1.30.9")
 	implementation("com.google.api-client:google-api-client:1.30.9")
 	implementation("com.google.auth:google-auth-library-oauth2-http:0.20.0")
+	implementation("com.github.ben-manes.caffeine:caffeine:2.7.0")
 
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
