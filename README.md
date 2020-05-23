@@ -3,6 +3,14 @@
 
 Spring Boot and Angular app to expose unlisted YouTube streams on your own terms on your own server.
 
+## build
+in the `src/main/angular` directory run
+- `npm install`
+- `ng build`
+then run `./gradlew build` in the root directory
+
+(npm and angular-cli required)
+
 ## run in dummy mode
 run `./gradlew bootRun` to try it out with dummy data
 
@@ -27,7 +35,7 @@ build and run the docker image as usual:
 - run it with `docker run -d -P --name=streams streams`
 
 #### configure credentials
-create a file named `application-secrets.yaml` with the following properties and the :
+create a file named `application-secrets.yaml` with the following properties with the correct values:
 ```
 # secret properties
 app:
