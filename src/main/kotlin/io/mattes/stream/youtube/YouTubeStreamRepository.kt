@@ -32,7 +32,7 @@ class YouTubeStreamRepository(
     @Cacheable
     override fun getActiveStream(): Video? {
         LOG.info("getting active stream from youtube.")
-        return youtube.liveBroadcasts().list("id,snippet")
+        return youtube.liveBroadcasts().list("id,snippet,contentDetails")
                 .setBroadcastStatus("active")
                 .setMaxResults(1)
                 .execute()
@@ -44,7 +44,7 @@ class YouTubeStreamRepository(
     @Cacheable
     override fun getPageOfCompletedStreams(pageSize: Int, page: String?): VideoPage {
         LOG.info("getting page from youtube. pageSize=$pageSize page=$page")
-        val response = youtube.liveBroadcasts().list("id,snippet")
+        val response = youtube.liveBroadcasts().list("id,snippet,contentDetails")
                 .setBroadcastStatus("completed")
                 .setMaxResults(pageSize.toLong())
                 .setPageToken(page)

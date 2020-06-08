@@ -6,15 +6,15 @@ import {DateService} from './date.service';
   selector: 'completed-streams',
   template: `
     <div class="row">
-      <div *ngFor="let stream of completedStreams" class="col-lg-4 col-sm-6 col-6 mb-4">
+      <div *ngFor="let stream of completedStreams" class="col-lg-4 col-sm-6 col-xs-12 mb-4">
         <div class="card h-100">
           <yt-video [url]="stream.embedUrl"></yt-video>
           <div class="card-body">
             <p class="card-title">
               <a href="{{ stream.url }}">{{ stream.title }}</a>
             </p>
-            <small class="text-muted">aired: {{ formatDate(stream.date) }}</small>
           </div>
+          <small class="card-footer text-muted">aired: {{ formatDate(stream.date) }}</small>
         </div>
       </div>
     </div>
