@@ -23,7 +23,7 @@ import java.time.ZoneId
 @ConditionalOnBean(YouTube::class)
 class YouTubeStreamRepository(
         private val youtube: YouTube
-) : StreamRepository { // TODO: implement caching layer
+) : StreamRepository {
 
     companion object {
         private val LOG = LoggerFactory.getLogger(YouTubeStreamRepository::class.java)

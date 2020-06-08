@@ -4,7 +4,7 @@ import {Component, Input} from '@angular/core';
   selector: 'yt-video',
   template: `
     <div class="embed-responsive embed-responsive-16by9">
-      <iframe [src]="url + '?autoplay=' + autoplay | safe" class="embed-responsive-item"
+      <iframe [src]="url + '?autoplay=' + (autoplay ? 1 : 0) | safe" class="embed-responsive-item"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen>
       </iframe>

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {StreamService, Video} from './stream.service';
-import moment from 'moment'
+import {DateService} from './date.service';
 
 @Component({
   selector: 'completed-streams',
@@ -10,10 +10,10 @@ import moment from 'moment'
         <div class="card h-100">
           <yt-video [url]="stream.embedUrl"></yt-video>
           <div class="card-body">
-            <h4 class="card-title">
+            <p class="card-title">
               <a href="{{ stream.url }}">{{ stream.title }}</a>
-            </h4>
-            aired: {{ toDate(stream.date) }}
+            </p>
+            <small class="text-muted">aired: {{ formatDate(stream.date) }}</small>
           </div>
         </div>
       </div>
@@ -37,7 +37,8 @@ export class CompletedStreamsComponent implements OnInit {
   private nextPage: string = null
   private fetching: boolean = false
 
-  constructor(private streamService: StreamService) {
+  constructor(private streamService: StreamService,
+              private dateService: DateService) {
   }
 
   ngOnInit(): void {
@@ -63,8 +64,9 @@ export class CompletedStreamsComponent implements OnInit {
     return stream.url
   }
 
-  toDate(isoString: string): string {
-    return moment(isoString).format('LLLL')
+  formatDate(isoString: string): string {
+    let timestamp = this.dateService.parseIso(isoString);
+    return `${timestamp.format('LLLL')}`
   }
 
   private fetchMoreCompletedStreams(pageSize: number) {
