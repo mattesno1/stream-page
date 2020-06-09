@@ -3,12 +3,10 @@ package io.mattes.stream.rest
 import io.mattes.stream.model.Video
 import io.mattes.stream.model.VideoPage
 import io.mattes.stream.repository.StreamRepository
-import org.apache.logging.log4j.util.Strings
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import javax.validation.Valid
 import javax.validation.constraints.Max
 import javax.validation.constraints.Min
 

@@ -2,16 +2,14 @@ package io.mattes.stream.youtube
 
 import com.google.api.services.youtube.YouTube
 import com.google.api.services.youtube.model.LiveBroadcast
+import com.google.api.services.youtube.model.PlaylistItem
 import io.mattes.stream.model.Video
 import io.mattes.stream.model.VideoPage
 import io.mattes.stream.repository.StreamRepository
 import org.slf4j.LoggerFactory
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
-import org.springframework.cache.annotation.CacheConfig
-import org.springframework.cache.annotation.CacheEvict
 import org.springframework.cache.annotation.Cacheable
 import org.springframework.context.annotation.Primary
-import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Repository
 import java.time.Instant
 import java.time.ZoneId
@@ -19,7 +17,6 @@ import java.time.ZoneId
 
 @Primary
 @Repository
-@CacheConfig(cacheNames = ["youtube"])
 @ConditionalOnBean(YouTube::class)
 class YouTubeStreamRepository(
         private val youtube: YouTube
@@ -29,7 +26,7 @@ class YouTubeStreamRepository(
         private val LOG = LoggerFactory.getLogger(YouTubeStreamRepository::class.java)
     }
 
-    @Cacheable
+    @Cacheable(cacheNames = ["youtube-live"])
     override fun getActiveStream(): Video? {
         LOG.info("getting active stream from youtube.")
         return youtube.liveBroadcasts().list("id,snippet,contentDetails")
@@ -41,10 +38,10 @@ class YouTubeStreamRepository(
                 .firstOrNull()
     }
 
-    @Cacheable
+    @Cacheable(cacheNames = ["youtube-video"])
     override fun getPageOfCompletedStreams(pageSize: Int, page: String?): VideoPage {
         LOG.info("getting page from youtube. pageSize=$pageSize page=$page")
-        val response = youtube.liveBroadcasts().list("id,snippet,contentDetails")
+        val response = youtube.liveBroadcasts().list("id,snippet")
                 .setBroadcastStatus("completed")
                 .setMaxResults(pageSize.toLong())
                 .setPageToken(page)

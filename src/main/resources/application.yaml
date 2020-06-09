@@ -1,9 +1,6 @@
 spring:
   application:
     name: stream.mattes.io
-  cache:
-    cache-names: youtube
-    caffeine.spec: maximumSize=100,expireAfterWrite=60s
 # secret properties
 app:
   youtube:

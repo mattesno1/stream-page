@@ -6,15 +6,15 @@ import {DateService} from './date.service';
   selector: 'completed-streams',
   template: `
     <div class="row">
-      <div *ngFor="let stream of completedStreams" class="col-lg-4 col-sm-6 col-xs-12 mb-4">
+      <div *ngFor="let video of completedStreams" class="col-lg-4 col-sm-6 col-xs-12 mb-4">
         <div class="card h-100">
-          <yt-video [url]="stream.embedUrl"></yt-video>
+          <yt-video [url]="video.embedUrl"></yt-video>
           <div class="card-body">
             <p class="card-title">
-              <a href="{{ stream.url }}">{{ stream.title }}</a>
+              <a href="{{ video.url }}">{{ video.title }}</a>
             </p>
           </div>
-          <small class="card-footer text-muted">aired: {{ formatDate(stream.date) }}</small>
+          <small class="card-footer text-muted">{{ formatDate(video.date) }}</small>
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@ export class CompletedStreamsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchMoreCompletedStreams(this.pageSize)
+    this.fetchPageOfVideos()
   }
 
   public hasMore(): boolean {
@@ -56,12 +56,8 @@ export class CompletedStreamsComponent implements OnInit {
   public getMore() {
     if (!this.fetching) {
       this.fetching = true
-      this.fetchMoreCompletedStreams(this.pageSize)
+      this.fetchPageOfVideos()
     }
-  }
-
-  streamId(index: number, stream: Video): string {
-    return stream.url
   }
 
   formatDate(isoString: string): string {
@@ -69,8 +65,8 @@ export class CompletedStreamsComponent implements OnInit {
     return `${timestamp.format('LLLL')}`
   }
 
-  private fetchMoreCompletedStreams(pageSize: number) {
-    this.streamService.getPageOfCompletedStreams(this.nextPage, pageSize).subscribe(
+  private fetchPageOfVideos() {
+    this.streamService.getPageOfCompletedStreams(this.nextPage, this.pageSize).subscribe(
       page => {
         for (let video of page.videos) {
           this.completedStreams.push(video)
