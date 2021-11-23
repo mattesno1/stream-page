@@ -60,7 +60,7 @@ class YouTubeConfiguration {
     fun youtube(): YouTube {
 
         if (Strings.isBlank(refreshToken)) {
-            LOG.warn("no refresh token provided. Get an auth code /setup and call /setup/{authCode} with it.")
+            LOG.warn("no refresh token provided. Get an auth code /setup and call /setup?auth_code={authCode} with it to receive a refresh token.")
         } else {
             updateToken(refreshToken!!)
         }
